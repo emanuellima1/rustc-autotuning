@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <title>Notebooks Website</title>
+    <title>Rustc Autotuning</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" href="images/small_logo.png">
     <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
@@ -19,10 +20,10 @@
 
                 <!-- Header -->
                 <header id="header">
-                    <a href="index.html" class="logo"><strong>BlockScience</strong></a>
+                    <a href="index.html" class="logo"><strong>Emanuel Lima</strong></a>
                     <ul class="icons">
-                        <li><a href="https://github.com/BlockScience" class="icon brands fa-github"><span
-                                    class="label">Github</span></a></li>
+                        <li><a href="https://github.com/emanuellima1/rustc-autotuning"
+                                class="icon brands fa-github"><span class="label">Github</span></a></li>
                     </ul>
                 </header>
 
@@ -30,17 +31,23 @@
                 <section id="banner">
                     <div class="content">
                         <header>
-                            <h1>Notebooks Website</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h1>MSc Research Journal</h1>
+                            <p>A Design of Experiments Approach to Autotuning the Rust Compiler</p>
                         </header>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis neque posuere,
-                            eleifend purus sit amet, mollis tortor. Phasellus in leo tellus.
-                            Ut pretium lectus sit amet eleifend bibendum. Nunc porttitor tortor a tempus sollicitudin.
-                            Curabitur quis tortor sit amet ligula hendrerit faucibus quis at nibh.
-                            Phasellus tellus nibh, rhoncus placerat mauris ut, sagittis maximus justo. </p>
+                        <p align="justify">Rustc is the official compiler of the Rust Programming Language. It uses the
+                            LLVM compiler
+                            framework as a back end to generate binaries. LLVM transforms its Intermediate
+                            Representation (LLVM IR) by executing a series of optimization passes, that can be toggled
+                            by flags, in order to generate better optimized binaries. These passes interfere on metrics
+                            such as the execution time. Manually selecting flags to improve the execution time of a
+                            program is difficult, error prone and requires expert knowledge.
+                            Autotuning methods can automate parts of this process and help to understand
+                            the underlying search spaces. In this research we will seek to understand which LLVM flags
+                            most impact the execution time of Rust programs, using the Design of Experiments
+                            methodology.</p>
                     </div>
                     <span class="image object">
-                        <img src="images/bs.jpeg" alt="BlockScience Logo" />
+                        <img src="images/logo_white.png" alt="Rust Logo" />
                     </span>
                 </section>
             </div>
@@ -50,32 +57,46 @@
         <div id="sidebar">
             <div class="inner">
                 <!-- Menu -->
-                <!-- Do not change this <nav></nav> -->
                 <nav id="menu">
                     <header class="major">
-                        <h2>Notebooks</h2>
+                        <h2>Menu</h2>
                     </header>
-                    <!-- The converted notebooks go here -->
-<ul>
-<li><a href="notebooks/example.html">Example</a></li>
-</ul>
-                </nav>
-
-                <!-- Section -->
-                <section>
-                    <header class="major">
-                        <h2>Get in touch</h2>
-                    </header>
-                    <ul class="contact">
-                        <li class="icon solid fa-globe-americas"><a
-                                href="https://block.science/contact">BlockScience</a></li>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
+                        <li>
+                            <!-- The converted notebooks go here -->
+                            <span class="opener">First Experiments</span>
+                            <ul>
+                                <li><a href="notebooks/example.html">Example</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Documentation</span>
+                            <ul>
+                                <li><a href="https://rustc-dev-guide.rust-lang.org/part-2-intro.html">Rustc Guide</a>
+                                </li>
+                                <li><a href="https://doc.rust-lang.org/cargo/reference/profiles.html">Cargo Profiles</a>
+                                </li>
+                                <li><a href="https://doc.rust-lang.org/rustc/command-line-arguments.html">Rustc CLI</a>
+                                </li>
+                                <li><a
+                                        href="https://doc.rust-lang.org/nightly/nightly-rustc/src/rustc_mir_transform/lib.rs.html#440-505">MIR
+                                        Optimization Code</a>
+                                </li>
+                                <li><a href="https://nnethercote.github.io/perf-book/benchmarking.html">Rust
+                                        Benchmarking</a>
+                                </li>
+                                <li><a href="https://releases.llvm.org/14.0.0/docs/index.html#llvm-design-overview">LLVM
+                                        Architecture</a></li>
+                                <li><a href="https://releases.llvm.org/14.0.0/docs/Passes.html">LLVM Passes</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </section>
+                </nav>
 
                 <!-- Footer -->
                 <footer id="footer">
-                    <p class="copyright">&copy; BlockScience. All rights reserved. <br></br> Design: <a
-                            href="https://html5up.net">HTML5 UP</a>.</p>
+                    <p class="copyright">&copy; Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                 </footer>
             </div>
         </div>
