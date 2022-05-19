@@ -8,4 +8,6 @@ cp assets/script/write_links.py .
 
 chmod +x write_links.py
 
-./write_links.py
+pip3 install --user beautifulsoup4
+
+./write_links.py index.html "First Experiments"

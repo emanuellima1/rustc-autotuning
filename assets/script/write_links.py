@@ -1,36 +1,48 @@
 #!/usr/bin/env python3
 
-# This is a somewhat fragile script.
-# Refactors are welcome.
+"""Write links to notebooks on the HTML file"""
 
 import os
+import sys
 
-notebook_dict = {}
-command_ul = '<ul>\n'
-command = ''
+from bs4 import BeautifulSoup, Tag
 
-with os.scandir('notebooks/') as notebooks:
-    for nb in notebooks:
-        if nb.name[-5:] == '.html':
-            notebook_dict[nb.name] = nb.name[:-5].title().replace('_', ' ')
 
-for filename, title in notebook_dict.items():
-    command += f'<li><a href="notebooks/{filename}">{title}</a></li>\n'
+def write_link(html_file: str, section_id: str) -> None:
+    """Entrypoint of the script"""
+    notebook_dict = {}
 
-command_ul += command
-command_ul += '</ul>\n'
+    with os.scandir("notebooks/") as notebooks:
+        for notebook in notebooks:
+            if notebook.name[-5:] == ".html":
+                notebook_dict[notebook.name] = (
+                    notebook.name[:-5].title().replace("_", " ")
+                )
 
-with open("index.html", "r+") as file:
-    contents = file.readlines()
-    count = 0
-    for index, line in enumerate(contents):
-        if '<!-- The converted notebooks go here -->' in line:
-            if '<ul>' in contents[index+1]:
-                end = contents.index('</ul>\n')
-                del contents[index+2:end]
-                contents.insert(index + 2, command)
-            else:
-                contents.insert(index + 1, command_ul)
+    with open(html_file, "r", encoding="utf-8") as handle:
+        soup = BeautifulSoup(handle, "html.parser")
 
-with open("index.html", "w") as file:
-    file.writelines(contents)
+    for span in soup.find("nav").find_all("span"):
+        if span.text == section_id:
+            for sibling in span.next_siblings:
+                if isinstance(sibling, Tag):
+                    sibling.clear()
+                    for file_name, title in notebook_dict.items():
+                        new_li_tag = soup.new_tag("li")
+                        new_a_tag = soup.new_tag("a", href=f"notebooks/{file_name}")
+
+                        new_a_tag.string = title
+
+                        new_li_tag.append(new_a_tag)
+                        sibling.append(new_li_tag)
+
+    with open(html_file, "w", encoding="utf-8") as file:
+        file.write(str(soup))
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 3:
+        write_link(sys.argv[1], sys.argv[2])
+    else:
+        print('USAGE: ./write_links.py [HTML File] "[Span Text]"')
+        sys.exit(1)

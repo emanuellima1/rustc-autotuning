@@ -1,6 +1,6 @@
 name: "Menu Creation"
 description: "Creates the website menu after the convert workflow is run"
-author: "emanuel@block.science"
+author: "emanuel-lima@outlook.com"
 
 runs:
   using: "docker"
